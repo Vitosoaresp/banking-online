@@ -31,9 +31,9 @@ export function Register() {
   }
 
   return (
-    <div className='flex w-full px-40 h-screen justify-center items-center flex-col'>
+    <div className='flex w-full md:px-40 px-10 h-screen justify-center items-center flex-col bg-bg-animation bg-cover'>
       <h1 className='text-white font-bold pb-10'>Crie uma conta grátis!</h1>
-      <form onSubmit={habdleSubmitForm} className='flex flex-col gap-5 w-[300px]'>
+      <form onSubmit={habdleSubmitForm} className='flex flex-col gap-5 md:w-[300px]'>
           <label htmlFor="username" className='text-white flex flex-col w-full'>
             Usuário
             <input
