@@ -1,13 +1,14 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { Login } from './pages/Login';
 
 export function Routes() {
   return (
     <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
       <Route path="/">
         <Redirect to="/login" />
-      </Route>
-      <Route path="/login">
-        <h1>login</h1>
       </Route>
     </Switch>
   )
