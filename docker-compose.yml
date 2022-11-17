@@ -1,0 +1,47 @@
+version: '3.9'
+services:
+  frontend:
+    container_name: ng_frontend
+    working_dir: /app-frontend
+    build: ./web
+    ports:
+      - 3000:3000
+    volumes:
+      - ./web:/app-frontend
+    restart: always
+    depends_on:
+      backend:
+        condition: service_healthy
+  backend:
+    container_name: ng_backend
+    working_dir: /app-backend
+    build: ./server
+    ports:
+      - 3001:3001
+      - 5555:5555
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    volumes:
+      - ./server/src:/app-backend/src
+      - ./server/prisma:/app-backend/prisma
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] 
+      timeout: 10s
+      retries: 5
+    environment:
+      - JWT_SECRET=jwt_secret
+      - DB_PASS=password
+      - DATABASE_URL=postgresql://postgres:password@localhost:5432/ng-cash?schema=public
+  db:
+    container_name: db_postgres
+    image: postgres:13.2
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+    restart: always
+
+        
