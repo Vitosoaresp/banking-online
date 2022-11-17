@@ -1,8 +1,8 @@
+import { Routes } from './routes'
+
 function App() {
   return (
-    <div className="App">
-      Hello word!
-    </div>
+    <Routes />
   )
 }
 
