@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/server.js",
     "build": "tsc --watch",
-    "dev": "tsnd src/server.ts"
+    "dev": "tsnd --exit-child src/server.ts"
   },
   "keywords": [],
   "author": "",
