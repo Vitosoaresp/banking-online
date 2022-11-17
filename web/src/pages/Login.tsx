@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import logo from '../assets/logo-login.svg';
 
 export function Login() {
@@ -8,6 +10,14 @@ export function Login() {
 
   async function handleSubmitForm(event: React.FormEvent) {
     event.preventDefault();
+    axios.post('http://localhost:3001/login', {
+      username,
+      password
+      }).then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      });
   }
 
   return (
