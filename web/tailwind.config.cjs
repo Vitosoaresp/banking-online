@@ -7,6 +7,10 @@ module.exports = {
     extend: {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
+      },
+      backgroundImage: {
+        "bg-animation": "url('./src/assets/bg-animation.svg')",
+        "login-animation": "url('./src/assets/bg-animation2.svg')",
       }
     },
   },
