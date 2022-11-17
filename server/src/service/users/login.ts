@@ -12,7 +12,8 @@ export async function login(username: string, password: string) {
       username,
     },
   });
-  if (!user) {
+  
+  if (user === null) {
     return { code: 401, message: 'usuário não encontrado' };
   }
   if (user.password !== passHash) {
