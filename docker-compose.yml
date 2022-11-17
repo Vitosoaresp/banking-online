@@ -48,6 +48,8 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres
     restart: always
+    volumes:
+      - ./server/database:/var/lib/postgresql/data
     networks:
       - rede-virtual-2
 networks:
