@@ -12,6 +12,8 @@ services:
     depends_on:
       backend:
         condition: service_healthy
+    networks:
+      - rede-virtual-1
   backend:
     container_name: ng_backend
     working_dir: /app-backend
@@ -26,6 +28,9 @@ services:
     volumes:
       - ./server/src:/app-backend/src
       - ./server/prisma:/app-backend/prisma
+    networks:
+      - rede-virtual-1
+      - rede-virtual-2
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"] 
       timeout: 10s
@@ -33,7 +38,7 @@ services:
     environment:
       - JWT_SECRET=jwt_secret
       - DB_PASS=password
-      - DATABASE_URL=postgresql://postgres:password@localhost:5432/ng-cash?schema=public
+      - DATABASE_URL=postgresql://postgres:password@db:5432/ng-cash?schema=public
   db:
     container_name: db_postgres
     image: postgres:13.2
@@ -43,5 +48,9 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres
     restart: always
-
+    networks:
+      - rede-virtual-2
+networks:
+  rede-virtual-1:
+  rede-virtual-2:
         
