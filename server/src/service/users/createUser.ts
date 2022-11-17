@@ -26,7 +26,7 @@ export async function createUsers(username: string, password: string) {
       password: passHash,
       Account: {
         create: {
-          balance: 100,
+          balance: 10000,
         },
       }
     },
