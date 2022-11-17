@@ -26,9 +26,9 @@ export const transfer = async (req: Request<unknown, unknown, ICreateTransaction
   const { id } = res.locals.user;
   const { accountIn, value } = req.body;
 
-  const newTransfer = await transactionsService.transfer(id, accountIn, value);
-  if (!newTransfer) {
-    return res.status(500).json({ message: 'Error interno' });
+  const { data, error, code } = await transactionsService.transfer(id, accountIn, value);
+  if (error) {
+    return res.status(code).json({ error });
   }
-  return res.status(newTransfer.code).json(newTransfer.data);
+  return res.status(code).json(data);
 }
