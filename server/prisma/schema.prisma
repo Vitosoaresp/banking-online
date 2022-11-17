@@ -20,17 +20,19 @@ model Users {
 }
 
 model Accounts {
-  UserId       Int            @id @unique @default(autoincrement())
-  balance      Int            @default(100)
-  User         Users          @relation(fields: [UserId], references: [id])
-  Transactions Transactions[]
+  UserId          Int            @id @unique @default(autoincrement())
+  balance         Int            @default(100)
+  User            Users          @relation(fields: [UserId], references: [id])
+  TransactionsOut Transactions[] @relation("debited")
+  TransactionsIn  Transactions[] @relation("credited")
 }
 
 model Transactions {
-  id                String    @id @unique @default(uuid())
+  id                String   @id @unique @default(uuid())
   value             Int
-  Accounts          Accounts? @relation(fields: [debitedAccountId], references: [UserId])
+  debitedAccount    Accounts @relation("debited", fields: [debitedAccountId], references: [UserId])
+  creditedAccount   Accounts @relation("credited", fields: [creditedAccountId], references: [UserId])
   debitedAccountId  Int
   creditedAccountId Int
-  createdAt         DateTime  @default(now())
+  createdAt         DateTime @default(now())
 }
