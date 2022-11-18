@@ -1,5 +1,6 @@
+import PaymentsIcon from '@mui/icons-material/Payments';
 import PixIcon from '@mui/icons-material/Pix';
-import { ChartBar, CreditCard, Eye, EyeSlash } from 'phosphor-react';
+import { ChartLineUp, CreditCard, Eye, EyeSlash } from 'phosphor-react';
 import { useContext, useState } from 'react';
 import { AsideMenu } from '../components/AsideMenu';
 import { Header } from '../components/Header';
@@ -19,7 +20,7 @@ export function Home() {
       <Header />
       <main className='text-white w-full flex'>
         <AsideMenu />
-        <div className='flex flex-col px-20'>
+        <div className='flex flex-col px-20 w-full'>
           <div className='flex mt-10 gap-20'>
             <div className='w-[450px] bg-zinc-300 py-14 px-20 rounded-md gap-5 flex flex-col'>
               <p className='font-semibold text-2xl text-black'>
@@ -46,14 +47,20 @@ export function Home() {
               <button className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
                 <PixIcon fontSize='large' />
               </button>
-
+                
               <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
-                <ChartBar size={35} weight="fill" />
+                <ChartLineUp size={35} weight="fill" />
               </div>
 
               <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
                 <CreditCard size={35} weight="fill" />
               </div>
+
+              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
+                <PaymentsIcon fontSize='large' />
+              </div>
+
+              
               
             </div>
           </div>
