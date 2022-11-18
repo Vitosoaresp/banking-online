@@ -1,10 +1,11 @@
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-import { IBalance } from '../interfaces/IBalance';
+import { IUserLogin } from '../interfaces/IUser';
+import fetchBalance from '../services/fetchBalance';
 
 type BankingContextType = {
-  balance: IBalance;
-  setBalance: Dispatch<SetStateAction<IBalance>>
+  balance: number;
+  setBalance: Dispatch<SetStateAction<number>>
 }
 
 export const bankingContext = createContext({} as BankingContextType);
@@ -14,7 +15,20 @@ interface IBankingContextProviderProps {
 }
 
 export default function BankingContextProvider({ children }: IBankingContextProviderProps) {
-  const [balance, setBalance] = useState<IBalance>({} as IBalance);
+  const [balance, setBalance] = useState<number>(0);
+
+  const userData = localStorage.getItem('user');
+
+  useEffect(() => {
+    if (userData) {
+      const { token } = JSON.parse(userData) as IUserLogin;
+      const getBalance = async () => {
+        const { balance } = await fetchBalance(token);
+        setBalance(balance);
+      };
+      getBalance();
+    }
+  }, [userData]);
 
   return (
     <bankingContext.Provider value={{ balance, setBalance }}>
