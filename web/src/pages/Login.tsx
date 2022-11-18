@@ -1,33 +1,38 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Eye, EyeSlash, Lock, User } from 'phosphor-react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import { IUserLogin } from '../interfaces/IUser';
 
 
 export function Login() {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalidLogin, setIsInvalidLogin] = useState(false);
   const [visibledPassword, setVisibledPassword] = useState(false);
-
-  async function handleSubmitForm(event: React.FormEvent) {
-    event.preventDefault();
-    axios.post('http://localhost:3001/login', {
-      username,
-      password
-      }).then(response => {
-        console.log(response);
-      }).catch(error => {
-        console.log(error);
-        setIsInvalidLogin(true);
-      });
-  }
 
   useEffect(() => {
     if (isInvalidLogin) {
       setIsInvalidLogin(false);
     }
   }, [username, password]);
+
+  async function handleSubmitForm(event: React.FormEvent) {
+    event.preventDefault();
+    axios.post<unknown, AxiosResponse<IUserLogin>>('http://localhost:3001/login', {
+      username,
+      password
+      }).then(response => {
+        const { data } = response;
+        localStorage.setItem('user', JSON.stringify(data));
+        history.push('/home');
+      }).catch(() => {
+        setIsInvalidLogin(true);
+      });
+  }
 
   return (
     <div className='flex md:flex-row flex-col items-center justify-center h-screen bg-login-animation bg-cover'>
