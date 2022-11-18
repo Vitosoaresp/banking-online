@@ -4,8 +4,8 @@ import { IUserLogin } from '../interfaces/IUser';
 import fetchBalance from '../services/fetchBalance';
 
 type BankingContextType = {
-  balance: number;
-  setBalance: Dispatch<SetStateAction<number>>
+  balance: number | null;
+  setBalance: Dispatch<SetStateAction<number | null>>
 }
 
 export const bankingContext = createContext({} as BankingContextType);
@@ -15,7 +15,7 @@ interface IBankingContextProviderProps {
 }
 
 export default function BankingContextProvider({ children }: IBankingContextProviderProps) {
-  const [balance, setBalance] = useState<number>(0);
+  const [balance, setBalance] = useState<number | null>(null);
 
   const userData = localStorage.getItem('user');
 
