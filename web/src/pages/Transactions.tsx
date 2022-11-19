@@ -39,8 +39,10 @@ export function Transactions() {
         return convertDate(transaction.createdAt) <= convertDate(endDate)
       } else {
         return (
-          convertDate(transaction.createdAt) >= convertDate(startDate) &&
-          convertDate(transaction.createdAt) <= convertDate(endDate)
+          new Date(transaction.createdAt).getTime() >=
+            new Date(startDate).getTime() &&
+          new Date(transaction.createdAt).getTime() <=
+            new Date(endDate).getTime()
         )
       }
     },
