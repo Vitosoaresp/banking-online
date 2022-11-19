@@ -1,7 +1,7 @@
 import PaymentsIcon from '@mui/icons-material/Payments';
 import PixIcon from '@mui/icons-material/Pix';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ChartLineUp, CreditCard, Eye, EyeSlash } from 'phosphor-react';
+import { ChartLineUp, CreditCard, Eye, EyeClosed } from 'phosphor-react';
 import { useContext, useState } from 'react';
 
 import { AsideMenu } from '../components/AsideMenu';
@@ -31,12 +31,12 @@ export function Home() {
                 Olá, {userData && userData.username}
               </p>
               <div className='flex flex-col'>
-                <p className='text-zinc-800 opacity-80 text-sm flex gap-2 items-center'>
+                <p className='text-zinc-800 opacity-80 text-sm flex gap-2 items-center transition-all'>
                   Seu saldo atual é
                   {visibledBalance ? (
-                    <EyeSlash weight='thin' size={20} className='text-black/70 cursor-pointer' onClick={() => setVisibledBalance(false)} />
+                    <Eye weight='thin' size={20} className='text-black/70 cursor-pointer' onClick={() => setVisibledBalance(false)} />
                   ) : (
-                    <Eye weight='thin' size={20} className='text-black/70 cursor-pointer' onClick={() => setVisibledBalance(true)} />
+                    <EyeClosed weight='thin' size={20} className='text-black/70 cursor-pointer' onClick={() => setVisibledBalance(true)} />
                   )}
                 </p>
                 <span className='text-2xl text-black font-semibold'>
@@ -49,7 +49,7 @@ export function Home() {
 
             <div className='flex gap-5'>
               <Dialog.Root>
-                <Dialog.Trigger className='bg-zinc-200 rounded-full h-20 w-20 flex items-center justify-center text-black'>
+                <Dialog.Trigger className='bg-zinc-200 hover:bg-zinc-400 transition-colors duration-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
                   <PixIcon fontSize='large' />
                 </Dialog.Trigger>
 
