@@ -27,8 +27,8 @@ export function Home() {
   ) as IUserLogin
 
   const filterRecentTransactions = transactions
-    .reverse()
     .slice(transactions.length - 4, transactions.length)
+    .reverse()
 
   return (
     <>
