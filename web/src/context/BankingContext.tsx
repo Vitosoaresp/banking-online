@@ -1,13 +1,16 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { ITransactions } from '../interfaces/ITransfer';
 
 import { IUser, IUserLogin } from '../interfaces/IUser';
 import fetchBalance from '../services/fetchBalance';
+import { fetchGetTransfers } from '../services/fetchTransfer';
 import fetchUsers from '../services/fetchUsers';
 
 type BankingContextType = {
   balance: number | null;
   setBalance: Dispatch<SetStateAction<number | null>>
   users: IUser[];
+  transactions: ITransactions[];
 }
 
 export const bankingContext = createContext({} as BankingContextType);
@@ -19,6 +22,7 @@ interface IBankingContextProviderProps {
 export default function BankingContextProvider({ children }: IBankingContextProviderProps) {
   const [balance, setBalance] = useState<number | null>(null);
   const [users, setUsers] = useState<IUser[]>([]);
+  const [transactions, setTransactions] = useState<ITransactions[]>([]);
 
   const userData = localStorage.getItem('user');
 
@@ -33,14 +37,19 @@ export default function BankingContextProvider({ children }: IBankingContextProv
         const users = await fetchUsers();
         setUsers(users);
       };
+      const getTransactions = async () => {
+        const transactions = await fetchGetTransfers(token);
+        setTransactions(transactions);
+      };
 
+      getTransactions();
       getUsers();
       getBalance();
     }
   }, [userData]);
 
   return (
-    <bankingContext.Provider value={{ balance, setBalance, users }}>
+    <bankingContext.Provider value={{ balance, setBalance, users, transactions }}>
       {children}
     </bankingContext.Provider>
   )
