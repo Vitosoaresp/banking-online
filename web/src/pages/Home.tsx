@@ -27,7 +27,7 @@ export function Home() {
       <Header />
       <main className='text-white w-full flex'>
         <AsideMenu />
-        <div className='flex flex-col md:px-20 px-5 w-full'>
+        <div className='flex flex-col md:px-20 md:ml-[230px] px-5 w-full'>
           <div className='flex mt-10 md:gap-20 gap-10 md:flex-nowrap flex-wrap'>
             <div className='w-[450px] h-48 bg-zinc-300 py-14 md:px-20 px-10 justify-center rounded-md gap-5 flex flex-col'>
               <p className='font-semibold text-2xl text-black'>
@@ -78,7 +78,7 @@ export function Home() {
             </div>
           </div>
 
-          <div className='mt-10 flex flex-col md:pb-0 pb-10'>
+          <div className='mt-10 flex flex-col pb-10'>
             <div className='flex justify-between px-5 items-center'>
               <h2 className='text-lg font-bold'>Ultimas transferências</h2>
               <span>Ver mais</span>
