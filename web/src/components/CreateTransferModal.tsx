@@ -5,11 +5,12 @@ import { FormEvent, useContext, useState } from 'react';
 import { bankingContext } from '../context/BankingContext';
 import { IUserLogin } from '../interfaces/IUser';
 import { fetchCreateTransfer } from '../services/fetchTransfer';
+import { ComboBox } from './ComboxBox';
 
 export function CreateTransferModal() {
   const { users, balance } = useContext(bankingContext);
-  const [selectedUserCashIn, setSelectedUserCashIn] = useState('');
   const [amount, setAmount] = useState(0);
+  const [selectedUserCashIn, setSelectedUserCashIn] = useState('');
   const [errorTransferForBalance, setErrorTransferForBalance] = useState(false);
   const [isPromiseTransfer, setIsPromiseTransfer] = useState(false);
 
@@ -27,10 +28,11 @@ export function CreateTransferModal() {
     } else {
       try {
         setIsPromiseTransfer(true);
-        await fetchCreateTransfer({ accountIn: Number(selectedUserCashIn), value: amount * 100, token: userLoggedData.token });
+        await fetchCreateTransfer(
+          { accountIn: Number(selectedUserCashIn), value: amount * 100, token: userLoggedData.token },
+        );
         setIsPromiseTransfer(false);
         alert('Transferência realizada com sucesso!');
-        window.location.reload();
       } catch (error) {
         console.log(error);
         setIsPromiseTransfer(false);
@@ -47,18 +49,11 @@ export function CreateTransferModal() {
         <form onSubmit={handleSumbitTransfer} className='flex flex-col gap-5 md:px-8 w-full'>
           <label htmlFor="usersForCashIn" className='flex flex-col text-zinc-200 font-medium gap-2 text-xl'>
             Para quem você quer transferir?
-            <select
-              value={selectedUserCashIn}
-              onChange={(e) => setSelectedUserCashIn(e.target.value)}
-              name="usersForCashIn"
-              id="usersForCashIn"
-              className='text-zinc-200 bg-black outline-none py-4 px-6 rounded-md'
-            >
-              <option value="" disabled>Selecione um usuário</option>
-              {users.filter(user => user.id !== userLoggedData.id).map(user => (
-                <option key={user.id} value={user.id} className="py-4 px-2">{user.username}</option>
-              ))}
-            </select>
+            <ComboBox
+              users={users}
+              selectedUserCashIn={selectedUserCashIn}
+              setSelectedUserCashIn={setSelectedUserCashIn}
+            /> 
           </label>
 
           <label htmlFor="amount" className='flex flex-col text-zinc-200 font-medium gap-2 text-xl'>
