@@ -5,6 +5,7 @@ import { ChartLineUp, CreditCard, CurrencyBtc, Eye, EyeClosed } from 'phosphor-r
 import { useContext, useState } from 'react';
 
 import { AsideMenu } from '../components/AsideMenu';
+import { CardTransactions } from '../components/CardTransactions';
 import { CreateTransferModal } from '../components/CreateTransferModal';
 import { Header } from '../components/Header';
 import { bankingContext } from '../context/BankingContext';
@@ -12,12 +13,14 @@ import { bankingContext } from '../context/BankingContext';
 import { IUserLogin } from '../interfaces/IUser';
 
 export function Home() {
-  const { balance } = useContext(bankingContext);
+  const { balance, transactions } = useContext(bankingContext);
   const [visibledBalance, setVisibledBalance] = useState(false);
 
-  const userData = JSON.parse(
-    localStorage.getItem('user') as string,
-  ) as IUserLogin;
+  const userData = JSON.parse(localStorage.getItem('user') as string) as IUserLogin;
+
+  const filterRecentTransactions = transactions
+    .reverse()
+    .slice(transactions.length - 4, transactions.length);
 
   return (
     <>
@@ -26,7 +29,7 @@ export function Home() {
         <AsideMenu />
         <div className='flex flex-col md:px-20 px-5 w-full'>
           <div className='flex mt-10 md:gap-20 gap-10 md:flex-nowrap flex-wrap'>
-            <div className='w-[450px] h-48 bg-zinc-300 py-14 px-20 rounded-md gap-5 flex flex-col'>
+            <div className='w-[450px] h-48 bg-zinc-300 py-14 md:px-20 px-10 justify-center rounded-md gap-5 flex flex-col'>
               <p className='font-semibold text-2xl text-black'>
                 Olá, {userData && userData.username}
               </p>
@@ -75,6 +78,17 @@ export function Home() {
             </div>
           </div>
 
+          <div className='mt-10 flex flex-col md:pb-0 pb-10'>
+            <div className='flex justify-between px-5 items-center'>
+              <h2 className='text-lg font-bold'>Ultimas transferências</h2>
+              <span>Ver mais</span>
+            </div>
+
+            <CardTransactions
+              transactions={filterRecentTransactions}
+              userData={userData}
+            />
+          </div>
         </div>
       </main>
     </>
