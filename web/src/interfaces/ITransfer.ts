@@ -3,7 +3,7 @@ export interface  ICreateTransfer {
   value: number;
 }
 
-export interface ITransfer {
+export interface ITransactions {
   id: string;
   value: number;
   debitedAccountId: number;

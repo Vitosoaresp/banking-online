@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { ICreateTransfer, ITransfer } from '../interfaces/ITransfer';
+import { ICreateTransfer, ITransactions } from '../interfaces/ITransfer';
 
 export async function fetchCreateTransfer({ accountIn, value, token }: ICreateTransfer & { token: string }) {
   const { data } = await axios.post('http://localhost:3001/transfer', { accountIn, value }, {
@@ -13,7 +13,7 @@ export async function fetchCreateTransfer({ accountIn, value, token }: ICreateTr
 
 export async function fetchGetTransfers(token: string) {
   const { data } = await axios
-    .get<unknown, AxiosResponse<ITransfer[]>>('http://localhost:3001/transfer/transfer', {
+    .get<unknown, AxiosResponse<ITransactions[]>>('http://localhost:3001/transfer', {
       headers: {
         Authorization: token,
       },
