@@ -1,7 +1,7 @@
 import PaymentsIcon from '@mui/icons-material/Payments';
 import PixIcon from '@mui/icons-material/Pix';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ChartLineUp, CreditCard, Eye, EyeClosed } from 'phosphor-react';
+import { ChartLineUp, CreditCard, CurrencyBtc, Eye, EyeClosed } from 'phosphor-react';
 import { useContext, useState } from 'react';
 
 import { AsideMenu } from '../components/AsideMenu';
@@ -24,9 +24,9 @@ export function Home() {
       <Header />
       <main className='text-white w-full flex'>
         <AsideMenu />
-        <div className='flex flex-col px-20 w-full'>
-          <div className='flex mt-10 gap-20'>
-            <div className='w-[450px] bg-zinc-300 py-14 px-20 rounded-md gap-5 flex flex-col'>
+        <div className='flex flex-col md:px-20 px-5 w-full'>
+          <div className='flex mt-10 md:gap-20 gap-10 md:flex-nowrap flex-wrap'>
+            <div className='w-[450px] h-48 bg-zinc-300 py-14 px-20 rounded-md gap-5 flex flex-col'>
               <p className='font-semibold text-2xl text-black'>
                 Olá, {userData && userData.username}
               </p>
@@ -47,7 +47,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className='flex gap-5'>
+            <div className='flex gap-5 flex-wrap'>
               <Dialog.Root>
                 <Dialog.Trigger className='bg-zinc-200 hover:bg-zinc-400 transition-colors duration-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
                   <PixIcon fontSize='large' />
@@ -68,11 +68,12 @@ export function Home() {
                 <PaymentsIcon fontSize='large' />
               </div>
 
-              
+              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed'>
+                <CurrencyBtc size={35} weight="fill" />
+              </div>
               
             </div>
           </div>
-
 
         </div>
       </main>
