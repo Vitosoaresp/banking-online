@@ -1,10 +1,14 @@
 import PaymentsIcon from '@mui/icons-material/Payments';
 import PixIcon from '@mui/icons-material/Pix';
+import * as Dialog from '@radix-ui/react-dialog';
 import { ChartLineUp, CreditCard, Eye, EyeSlash } from 'phosphor-react';
 import { useContext, useState } from 'react';
+
 import { AsideMenu } from '../components/AsideMenu';
+import { CreateTransferModal } from '../components/CreateTransferModal';
 import { Header } from '../components/Header';
 import { bankingContext } from '../context/BankingContext';
+
 import { IUserLogin } from '../interfaces/IUser';
 
 export function Home() {
@@ -44,19 +48,23 @@ export function Home() {
             </div>
 
             <div className='flex gap-5'>
-              <button className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
-                <PixIcon fontSize='large' />
-              </button>
+              <Dialog.Root>
+                <Dialog.Trigger className='bg-zinc-200 rounded-full h-20 w-20 flex items-center justify-center text-black'>
+                  <PixIcon fontSize='large' />
+                </Dialog.Trigger>
+
+                <CreateTransferModal />
+              </Dialog.Root>
                 
-              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
+              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed'>
                 <ChartLineUp size={35} weight="fill" />
               </div>
 
-              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
+              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed'>
                 <CreditCard size={35} weight="fill" />
               </div>
 
-              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black'>
+              <div className='bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed'>
                 <PaymentsIcon fontSize='large' />
               </div>
 
