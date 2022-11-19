@@ -1,5 +1,4 @@
-import { getCashIn } from './getCashIn';
-import { getCashOut } from './getCashOut';
+import { getTransfers } from './getTransfers';
 import { transfer } from './transfer';
 
-export { transfer, getCashIn, getCashOut };
+export { transfer, getTransfers };
