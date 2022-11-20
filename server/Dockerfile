@@ -10,6 +10,6 @@ RUN npm install
 
 COPY /prisma ./prisma
 
-RUN npx prisma db push
+RUN npx prisma generate
 
 CMD ["npm", "run", "dev"]
