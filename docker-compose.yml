@@ -8,7 +8,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./web:/app-frontend
+      - ./:/web
+      - /web/node_modules
     restart: always
     depends_on:
       backend:
