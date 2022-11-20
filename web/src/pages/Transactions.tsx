@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react'
+/* eslint-disable no-octal */
+import { useContext, useMemo, useState } from 'react'
 
 import { AsideMenu } from '../components/AsideMenu'
 import { CardTransactions } from '../components/CardTransactions'
@@ -27,22 +28,39 @@ export function Transactions() {
     }
   })
 
-  const convertDate = (dateString: string) => new Date(dateString).getTime()
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.setHours(0, 0, 0, 0)
+  }
+
+  const newStartDate = useMemo(
+    () => (startDate ? formatDate(startDate.replace(/-/g, '/')) : ''),
+    [startDate],
+  )
+
+  const newEndDate = useMemo(
+    () => (endDate ? formatDate(endDate.replace(/-/g, '/')) : ''),
+    [endDate],
+  )
 
   const filterTransactionsByDate = filterTransactionsByType.filter(
     (transaction) => {
-      if (startDate === '' && endDate === '') {
-        return transaction
-      } else if (startDate !== '' && endDate === '') {
-        return convertDate(transaction.createdAt) >= convertDate(startDate)
-      } else if (endDate !== '' && startDate === '') {
-        return convertDate(transaction.createdAt) <= convertDate(endDate)
-      } else {
+      const newTransactioDate = formatDate(transaction.createdAt)
+      if (startDate && endDate) {
         return (
-          convertDate(transaction.createdAt) >= convertDate(startDate) &&
-          convertDate(transaction.createdAt) <= convertDate(endDate)
+          newTransactioDate >= newStartDate && newTransactioDate <= newEndDate
         )
       }
+
+      if (startDate) {
+        return newTransactioDate >= newStartDate
+      }
+
+      if (endDate) {
+        return newTransactioDate <= newEndDate
+      }
+
+      return true
     },
   )
 
@@ -104,10 +122,6 @@ export function Transactions() {
               name="dateUntil"
               id="dateUntil"
             />
-
-            {/* <button type="button" className="" onClick={() => }>
-              Filtrar
-            </button> */}
           </div>
           <CardTransactions
             transactions={filterTransactionsByDate.reverse()}
