@@ -87,19 +87,19 @@ export function Home() {
                 <CreateTransferModal />
               </Dialog.Root>
 
-              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 opacity-60 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <ChartLineUp size={35} weight="fill" />
               </div>
 
-              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 opacity-60 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <CreditCard size={35} weight="fill" />
               </div>
 
-              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 opacity-60 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <PaymentsIcon fontSize="large" />
               </div>
 
-              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 opacity-60 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <CurrencyBtc size={35} weight="fill" />
               </div>
             </div>
