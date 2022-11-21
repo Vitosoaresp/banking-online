@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node build/server.js",
     "build": "tsc --watch",
-    "dev": "tsnd --exit-child src/server.ts"
+    "dev": "tsnd --exit-child src/server.ts",
+    "db:push": "npx prisma db push"
   },
   "keywords": [],
   "author": "",
