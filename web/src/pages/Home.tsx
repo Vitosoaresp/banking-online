@@ -8,7 +8,8 @@ import {
   Eye,
   EyeClosed,
 } from 'phosphor-react'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { AsideMenu } from '../components/AsideMenu'
 import { CardTransactions } from '../components/CardTransactions'
@@ -19,12 +20,19 @@ import { bankingContext } from '../context/BankingContext'
 import { IUserLogin } from '../interfaces/IUser'
 
 export function Home() {
+  const history = useHistory()
   const { balance, transactions } = useContext(bankingContext)
   const [visibledBalance, setVisibledBalance] = useState(false)
 
   const userData = JSON.parse(
     localStorage.getItem('user') as string,
   ) as IUserLogin
+
+  useEffect(() => {
+    if (!userData) {
+      history.push('/login')
+    }
+  }, [])
 
   const filterRecentTransactions = transactions
     .slice(transactions.length - 4, transactions.length)
