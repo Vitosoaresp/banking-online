@@ -8,7 +8,7 @@ services:
       - 3000:3000
     volumes:
       - ./web:/web
-      - ./web/src:/web/src
+      - ./web/node_modules
     restart: always
     depends_on:
       backend:
