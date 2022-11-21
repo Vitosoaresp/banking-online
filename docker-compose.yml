@@ -6,9 +6,6 @@ services:
     build: ./web
     ports:
       - 3000:3000
-    volumes:
-      - ./web:/web
-      - ./web/node_modules
     restart: always
     depends_on:
       backend:
