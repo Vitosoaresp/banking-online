@@ -58,7 +58,7 @@ export function ComboBox({
           leaveTo="opacity-0"
           afterLeave={() => setQueryPerson('')}
         >
-          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-black text-zinc-200 py-1 text-base shadow-lg">
+          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-black text-zinc-200 py-1 text-base shadow-lg z-20">
             {filteredUser.map((user) => (
               <Combobox.Option
                 key={user.id}
