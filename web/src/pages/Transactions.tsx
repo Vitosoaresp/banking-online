@@ -80,7 +80,7 @@ export function Transactions() {
             >
               <ArrowLeft size={32} color="white" />
             </button>
-            Suas Transações
+            Suas transferências
           </h2>
           <div className="relative">
             <div className="flex gap-10 overflow-x-auto scroll-smooth">
