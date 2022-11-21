@@ -9,7 +9,7 @@ import {
   EyeClosed,
 } from 'phosphor-react'
 import { useContext, useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { AsideMenu } from '../components/AsideMenu'
 import { CardTransactions } from '../components/CardTransactions'
@@ -43,9 +43,9 @@ export function Home() {
       <Header />
       <main className="text-white w-full flex">
         <AsideMenu />
-        <div className="flex flex-col md:px-20 md:ml-[230px] px-5 w-full">
-          <div className="flex mt-10 md:gap-20 gap-10 md:flex-nowrap flex-wrap">
-            <div className="w-[450px] h-48 bg-zinc-300 py-14 md:px-20 px-10 justify-center rounded-md gap-5 flex flex-col">
+        <div className="flex flex-col md:px-20 md:ml-[230px] px-2 w-full">
+          <div className="flex mt-10 md:gap-20 px-2 gap-10 md:flex-nowrap flex-wrap">
+            <div className="md:w-[450px] w-full h-48 bg-zinc-300 py-14 md:px-20 px-7 justify-center rounded-md gap-5 flex flex-col">
               <p className="font-semibold text-2xl text-black">
                 Olá, {userData && userData.username}
               </p>
@@ -80,26 +80,26 @@ export function Home() {
 
             <div className="flex gap-5 flex-wrap">
               <Dialog.Root>
-                <Dialog.Trigger className="bg-zinc-200 hover:bg-zinc-400 transition-colors duration-300 rounded-full h-20 w-20 flex items-center justify-center text-black">
+                <Dialog.Trigger className="bg-zinc-200 hover:bg-zinc-400 transition-colors duration-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black">
                   <PixIcon fontSize="large" />
                 </Dialog.Trigger>
 
                 <CreateTransferModal />
               </Dialog.Root>
 
-              <div className="bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <ChartLineUp size={35} weight="fill" />
               </div>
 
-              <div className="bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <CreditCard size={35} weight="fill" />
               </div>
 
-              <div className="bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <PaymentsIcon fontSize="large" />
               </div>
 
-              <div className="bg-zinc-300 rounded-full h-20 w-20 flex items-center justify-center text-black cursor-not-allowed">
+              <div className="bg-zinc-300 rounded-full md:h-20 h-16 md:w-20 w-16 flex items-center justify-center text-black cursor-not-allowed">
                 <CurrencyBtc size={35} weight="fill" />
               </div>
             </div>
@@ -108,7 +108,7 @@ export function Home() {
           <div className="mt-10 flex flex-col pb-10">
             <div className="flex justify-between px-5 items-center">
               <h2 className="text-lg font-bold">Ultimas transferências</h2>
-              <span>Ver mais</span>
+              <Link to="/transactions">Ver mais</Link>
             </div>
 
             <CardTransactions

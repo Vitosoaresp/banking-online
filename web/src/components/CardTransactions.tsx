@@ -16,7 +16,7 @@ export function CardTransactions({
   return (
     <>
       {transactions.length < 1 && (
-        <p className="flex justify-center py-20 text-xl font-semibold">
+        <p className="flex justify-center py-20 px-5 text-xl font-semibold">
           Você não realizou/recebeu nenhuma transação ainda!
         </p>
       )}
@@ -24,7 +24,7 @@ export function CardTransactions({
         ({ id, createdAt, debitedAccountId, creditedAccountId, value }) => (
           <div
             key={id}
-            className="flex gap-5 mt-5 bg-[#1f1f1f] py-4 px-6 rounded-md"
+            className="flex md:gap-5 gap-2 mt-5 bg-[#1f1f1f] py-4 md:px-6 px-2 rounded-md"
           >
             <div className="flex justify-center items-center px-4 py-1 bg-zinc-300 rounded-3xl">
               <span className="text-3xl font-bold text-black">

@@ -70,58 +70,66 @@ export function Transactions() {
       <main className="text-white w-full flex">
         <AsideMenu />
         <div className="flex flex-col md:px-20 md:ml-[230px] px-5 py-10 w-full">
-          <h2>Suas Transações</h2>
-          <div className="flex gap-10">
-            <button
-              type="button"
-              onClick={() => setSelectLaunch('all')}
-              className={`px-4 py-2 rounded-md cursor-pointer transition-colors ${
-                selectLaunch === 'all'
-                  ? 'bg-zinc-300 text-black'
-                  : 'bg-[#1f1f1f] text-zinc-200'
-              }`}
-            >
-              Todas
-            </button>
-            <button
-              type="button"
-              onClick={() => setSelectLaunch('cashOut')}
-              className={`px-4 py-2 rounded-md  cursor-pointer transition-colors ${
-                selectLaunch === 'cashOut'
-                  ? 'bg-zinc-300 text-black'
-                  : 'bg-[#1f1f1f] text-zinc-200'
-              }`}
-            >
-              Enviadas
-            </button>
-            <button
-              type="button"
-              onClick={() => setSelectLaunch('cashIn')}
-              className={`px-4 py-2 rounded-md cursor-pointer transition-colors ${
-                selectLaunch === 'cashIn'
-                  ? 'bg-zinc-300 text-black'
-                  : 'bg-[#1f1f1f] text-zinc-200'
-              }`}
-            >
-              Recebidas
-            </button>
+          <h2 className="md:text-2xl text-lg font-bold pb-10">
+            Suas Transações
+          </h2>
+          <div className="relative">
+            <div className="flex gap-10 overflow-x-auto scroll-smooth">
+              <button
+                type="button"
+                onClick={() => setSelectLaunch('all')}
+                className={`px-4 py-2 rounded-md cursor-pointer transition-colors ${
+                  selectLaunch === 'all'
+                    ? 'bg-zinc-300 text-black'
+                    : 'bg-[#1f1f1f] text-zinc-200'
+                }`}
+              >
+                Todas
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectLaunch('cashOut')}
+                className={`px-4 py-2 rounded-md  cursor-pointer transition-colors ${
+                  selectLaunch === 'cashOut'
+                    ? 'bg-zinc-300 text-black'
+                    : 'bg-[#1f1f1f] text-zinc-200'
+                }`}
+              >
+                Enviadas
+              </button>
+              <button
+                type="button"
+                onClick={() => setSelectLaunch('cashIn')}
+                className={`px-4 py-2 rounded-md cursor-pointer transition-colors ${
+                  selectLaunch === 'cashIn'
+                    ? 'bg-zinc-300 text-black'
+                    : 'bg-[#1f1f1f] text-zinc-200'
+                }`}
+              >
+                Recebidas
+              </button>
 
-            <input
-              className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 py-2"
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              name="dateOf"
-              id="dateOf"
-            />
-            <input
-              className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 py-2"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              type="date"
-              name="dateUntil"
-              id="dateUntil"
-            />
+              <label htmlFor="startDate">
+                <input
+                  className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 py-2"
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  name="startDate"
+                  id="startDate"
+                />
+              </label>
+              <label htmlFor="endDate">
+                <input
+                  className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 py-2"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  type="date"
+                  name="endDate"
+                  id="endDate"
+                />
+              </label>
+            </div>
           </div>
           <CardTransactions
             transactions={filterTransactionsByDate.reverse()}
