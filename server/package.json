@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "node public/server.js",
     "build": "tsc",
     "dev": "tsnd --exit-child src/server.ts",
     "db:push": "npx prisma db push"
