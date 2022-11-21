@@ -12,7 +12,9 @@ export function Header() {
 
   return (
     <header className="w-full flex justify-end items-center bg-zinc-900 py-4 px-14 gap-10">
-      <Bell size={30} weight="fill" color="white" />
+      <button className="cursor-not-allowed">
+        <Bell size={30} weight="fill" color="white" className="pb-1" />
+      </button>
       <Popover>
         <Popover.Button>
           <UserCircle size={30} weight="fill" color="white" />
@@ -23,9 +25,9 @@ export function Header() {
             Editar Perfil
           </div>
           <div className="py-2">
-            <p className="flex cursor-not-allowed gap-1 text-md items-center">
+            <p className="flex cursor-not-allowed gap-1 text-md items-center justify-between text-zinc-400">
               Editar Imagem{' '}
-              <span className="text-xs text-red-600 text-right">Em breve</span>
+              <span className="text-xs text-red-600">em breve</span>
             </p>
           </div>
           <hr className="w-full py-2" />

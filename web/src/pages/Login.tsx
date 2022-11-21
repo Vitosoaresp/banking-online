@@ -114,7 +114,7 @@ export function Login() {
           <button
             disabled={!username || !password}
             type="submit"
-            className="bg-zinc-600 hover:bg-zinc-700 transition-colors py-2 rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-zinc-200 hover:bg-zinc-300 transition-colors py-2 rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Entrar
           </button>

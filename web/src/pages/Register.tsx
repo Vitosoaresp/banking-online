@@ -110,8 +110,8 @@ export function Register() {
           )}
           {isInvalidPassword && (
             <p className="text-red-500 text-sm pt-2">
-              A senha deve conter pelo menos 8 caracteres, uma letra maiúscula,
-              uma letra minúscula e um número.
+              A senha deve conter pelo menos 8 caracteres, uma letra maiúscula e
+              um número.
             </p>
           )}
         </label>
