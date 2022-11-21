@@ -8,7 +8,7 @@ export function Register() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isInvalidPassword, setIsInvalidPassword] = useState(false)
-  const [isInvalidUsername, setIsInvalidUsername] = useState(false)
+  const [errorRegistering, setErrorRegistering] = useState('')
   const [visibledPassword, setVisibledPassword] = useState(false)
 
   const regexPass = /^(?=.*\d)(?=.*[A-Z])[0-9a-zA-Z$*&@#]{8,}$/
@@ -17,9 +17,7 @@ export function Register() {
     if (isInvalidPassword) {
       setIsInvalidPassword(false)
     }
-    if (isInvalidUsername) {
-      setIsInvalidUsername(false)
-    }
+    setErrorRegistering('')
   }, [username, password])
 
   async function habdleSubmitForm(event: React.FormEvent) {
@@ -36,8 +34,8 @@ export function Register() {
           history.push('/login')
           alert('Usuário cadastrado com sucesso!')
         })
-        .catch(() => {
-          setIsInvalidUsername(true)
+        .catch((err) => {
+          setErrorRegistering(err.response.data.message)
         })
     }
   }
@@ -68,6 +66,11 @@ export function Register() {
             id="username"
           />
           <User className="absolute left-2 top-9 text-black/70" />
+          {username.length > 0 && username.length < 3 && (
+            <p className="text-red-500 text-sm pt-2">
+              Seu usuário deve conter mais de 3 caracteres
+            </p>
+          )}
         </label>
 
         <label
@@ -112,12 +115,13 @@ export function Register() {
             </p>
           )}
         </label>
-        {isInvalidUsername && (
-          <p className="text-red-500 text-sm pt-2">Usuário já cadastrado.</p>
+        {errorRegistering && (
+          <p className="text-red-500 text-sm pt-2">{errorRegistering}</p>
         )}
         <button
           type="submit"
-          className="bg-zinc-600 hover:bg-zinc-700 transition-colors py-2 rounded-md font-medium"
+          disabled={username.length < 3 || password.length < 8}
+          className="bg-zinc-300 hover:bg-zinc-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed py-2 rounded-md font-medium"
         >
           Criar uma conta
         </button>
