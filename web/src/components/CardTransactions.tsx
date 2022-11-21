@@ -15,6 +15,11 @@ export function CardTransactions({
   const { users } = useContext(bankingContext)
   return (
     <>
+      {transactions.length < 1 && (
+        <p className="flex justify-center py-20 text-xl font-semibold">
+          Você não realizou/recebeu nenhuma transação ainda!
+        </p>
+      )}
       {transactions.map(
         ({ id, createdAt, debitedAccountId, creditedAccountId, value }) => (
           <div
