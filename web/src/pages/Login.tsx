@@ -19,6 +19,12 @@ export function Login() {
     }
   }, [username, password])
 
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      history.push('/home')
+    }
+  }, [])
+
   async function handleSubmitForm(event: React.FormEvent) {
     event.preventDefault()
     axios
