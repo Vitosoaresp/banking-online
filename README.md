@@ -49,7 +49,7 @@ docker start ng_frontend ng_backend
 > Rode esse comando para inicializar o banco
 ```bash
 docker exec -it ng_backend sh
-npm run db:start
+npm run db:push
 ```
 
 ## Porta das aplicações
