@@ -2,13 +2,13 @@ version: '3.9'
 services:
   frontend:
     container_name: ng_frontend
-    working_dir: /app-frontend
+    working_dir: /web
     build: ./web
     ports:
       - 3000:3000
     volumes:
-      - ./:/web
-      - /web/node_modules
+      - ./web:/web
+      - ./web/src:/web/src
     restart: always
     depends_on:
       backend:
