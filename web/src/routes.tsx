@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom'
+import BankingContextProvider from './context/BankingContext'
 
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
@@ -9,10 +10,14 @@ export function Routes() {
   return (
     <Switch>
       <Route path="/home">
-        <Home />
+        <BankingContextProvider>
+          <Home />
+        </BankingContextProvider>
       </Route>
       <Route path="/transactions">
-        <Transactions />
+        <BankingContextProvider>
+          <Transactions />
+        </BankingContextProvider>
       </Route>
       <Route path="/register">
         <Register />
