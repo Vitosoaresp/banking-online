@@ -1,5 +1,7 @@
 /* eslint-disable no-octal */
+import { ArrowLeft } from 'phosphor-react'
 import { useContext, useMemo, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import { AsideMenu } from '../components/AsideMenu'
 import { CardTransactions } from '../components/CardTransactions'
@@ -9,6 +11,7 @@ import { bankingContext } from '../context/BankingContext'
 import { IUserLogin } from '../interfaces/IUser'
 
 export function Transactions() {
+  const history = useHistory()
   const { transactions } = useContext(bankingContext)
   const [selectLaunch, setSelectLaunch] = useState('all')
   const [startDate, setStartDate] = useState('')
@@ -70,7 +73,13 @@ export function Transactions() {
       <main className="text-white w-full flex">
         <AsideMenu />
         <div className="flex flex-col md:px-20 md:ml-[230px] px-5 py-10 w-full">
-          <h2 className="md:text-2xl text-lg font-bold pb-10">
+          <h2 className="md:text-2xl text-lg font-bold pb-10 flex items-center">
+            <button
+              className="md:hidden flex pr-2"
+              onClick={() => history.push('/home')}
+            >
+              <ArrowLeft size={32} color="white" />
+            </button>
             Suas Transações
           </h2>
           <div className="relative">
