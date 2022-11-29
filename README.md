@@ -52,7 +52,7 @@ docker exec -it ng_backend sh
 npm run db:push
 ```
 
-## Porta das aplicações
+## Portas da aplicação
  -  Backend: 3001
  -  Frontend: 3000
  -  Banco de dados: 5432
