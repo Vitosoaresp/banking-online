@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/23152592/203162169-d92771d8-1029-4b34-bb83-8c075b35b385.png)
 
 # Contexto
-Este projeto trata-se de uma aplicação onde é possível ver e enviar o seu saldo á algum outro usuário, filtrar suas transações por enviadas, recebidas ou por um período de data específico.
+Este projeto trata-se de uma aplicação onde é possível ver e enviar o seu saldo á algum outro usuário, filtrar suas transações por enviadas, recebidas ou por um período de data específica.
 
 ## Técnologias usadas
 
@@ -24,7 +24,7 @@ Back-end:
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ## Como rodar o projeto na sua máquina
 
@@ -52,7 +52,7 @@ docker exec -it ng_backend sh
 npm run db:push
 ```
 
-## Porta das aplicações
+## Portas da aplicação
  -  Backend: 3001
  -  Frontend: 3000
  -  Banco de dados: 5432
