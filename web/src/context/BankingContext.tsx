@@ -17,6 +17,7 @@ type BankingContextType = {
   setBalance: Dispatch<SetStateAction<number | null>>
   users: IUser[]
   transactions: ITransactions[]
+  getBalanceAndTransactions: (token: string) => Promise<void>
 }
 
 export const bankingContext = createContext({} as BankingContextType)
@@ -34,31 +35,39 @@ export default function BankingContextProvider({
 
   const userData = localStorage.getItem('user')
 
+  const getBalanceAndTransactions = async (token: string) => {
+    const { balance } = await fetchBalance(token)
+    const transactions = await fetchGetTransfers(token)
+    setBalance(balance)
+    setTransactions(transactions)
+  }
+
   useEffect(() => {
     if (userData) {
       const { token } = JSON.parse(userData) as IUserLogin
-      const getBalance = async () => {
-        const { balance } = await fetchBalance(token)
-        setBalance(balance)
-      }
+
       const getUsers = async () => {
         const users = await fetchUsers()
         setUsers(users)
       }
-      const getTransactions = async () => {
-        const transactions = await fetchGetTransfers(token)
-        setTransactions(transactions)
+      const getDataUser = async () => {
+        await getBalanceAndTransactions(token)
       }
 
-      getTransactions()
       getUsers()
-      getBalance()
+      getDataUser()
     }
   }, [userData])
 
   return (
     <bankingContext.Provider
-      value={{ balance, setBalance, users, transactions }}
+      value={{
+        balance,
+        setBalance,
+        users,
+        transactions,
+        getBalanceAndTransactions,
+      }}
     >
       {children}
     </bankingContext.Provider>

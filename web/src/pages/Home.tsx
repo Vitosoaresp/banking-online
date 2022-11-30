@@ -21,7 +21,8 @@ import { IUserLogin } from '../interfaces/IUser'
 
 export function Home() {
   const history = useHistory()
-  const { balance, transactions } = useContext(bankingContext)
+  const { balance, transactions, getBalanceAndTransactions } =
+    useContext(bankingContext)
   const [visibledBalance, setVisibledBalance] = useState(false)
 
   const userData = JSON.parse(
@@ -33,6 +34,10 @@ export function Home() {
       history.push('/login')
     }
   }, [])
+
+  async function handleUpdateUserData() {
+    await getBalanceAndTransactions(userData.token)
+  }
 
   const filterRecentTransactions = transactions
     .slice(transactions.length - 4, transactions.length)
@@ -49,32 +54,40 @@ export function Home() {
               <p className="font-semibold text-2xl text-black">
                 Olá, {userData && userData.username}
               </p>
-              <div className="flex flex-col">
-                <p className="text-zinc-800 opacity-80 text-sm flex gap-2 items-center transition-all">
-                  Seu saldo atual é
-                  {visibledBalance ? (
-                    <Eye
-                      weight="thin"
-                      size={20}
-                      className="text-black/70 cursor-pointer"
-                      onClick={() => setVisibledBalance(false)}
-                    />
-                  ) : (
-                    <EyeClosed
-                      weight="thin"
-                      size={20}
-                      className="text-black/70 cursor-pointer"
-                      onClick={() => setVisibledBalance(true)}
-                    />
-                  )}
-                </p>
-                <span className="text-2xl text-black font-semibold">
-                  {!visibledBalance
-                    ? '*****'
-                    : balance === null
-                    ? 'Não foi possível carregar seu saldo'
-                    : `R$ ${(balance / 100).toFixed(2).split('.').join(',')}`}
-                </span>
+              <div className="flex items-center gap-2">
+                <div className="flex flex-col">
+                  <p className="text-zinc-800 opacity-80 text-sm flex gap-2 items-center transition-all">
+                    Seu saldo atual é
+                    {visibledBalance ? (
+                      <Eye
+                        weight="thin"
+                        size={20}
+                        className="text-black/70 cursor-pointer"
+                        onClick={() => setVisibledBalance(false)}
+                      />
+                    ) : (
+                      <EyeClosed
+                        weight="thin"
+                        size={20}
+                        className="text-black/70 cursor-pointer"
+                        onClick={() => setVisibledBalance(true)}
+                      />
+                    )}
+                  </p>
+                  <span className="text-2xl text-black font-semibold">
+                    {!visibledBalance
+                      ? '*****'
+                      : balance === null
+                      ? 'Não foi possível carregar seu saldo'
+                      : `R$ ${(balance / 100).toFixed(2).split('.').join(',')}`}
+                  </span>
+                </div>
+                <button
+                  onClick={handleUpdateUserData}
+                  className="bg-black/70 hover:bg-black transition-colors text-white px-4 py-2 rounded-md"
+                >
+                  Atualizar
+                </button>
               </div>
             </div>
 
