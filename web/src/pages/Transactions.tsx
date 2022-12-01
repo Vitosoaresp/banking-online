@@ -72,7 +72,7 @@ export function Transactions() {
       <Header />
       <main className="text-white w-full flex">
         <AsideMenu />
-        <div className="flex flex-col md:px-20 md:ml-[230px] px-5 py-10 w-full">
+        <div className="flex flex-col md:px-20 md:ml-[230px] px-5 md:py-10 py-5 w-full">
           <h2 className="md:text-2xl text-lg font-bold pb-10 flex items-center">
             <button
               className="md:hidden flex pr-2"
@@ -118,9 +118,10 @@ export function Transactions() {
                 Recebidas
               </button>
 
-              <label htmlFor="startDate">
+              <label htmlFor="startDate" className="flex items-center gap-2">
+                De:
                 <input
-                  className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 py-2"
+                  className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 md:py-2"
                   type="date"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
@@ -128,12 +129,14 @@ export function Transactions() {
                   id="startDate"
                 />
               </label>
-              <label htmlFor="endDate">
+              <label htmlFor="endDate" className="flex items-center gap-2 py-2">
+                Até:
                 <input
-                  className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 py-2"
+                  className="bg-[#1f1f1f] rounded-md text-zinc-200 px-4 md:py-2 py-6 placeholder:text-zinc-200"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
                   type="date"
+                  placeholder="Data final"
                   name="endDate"
                   id="endDate"
                 />

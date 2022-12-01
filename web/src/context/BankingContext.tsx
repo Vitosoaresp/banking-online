@@ -40,21 +40,19 @@ export default function BankingContextProvider({
     const transactions = await fetchGetTransfers(token)
     setBalance(balance)
     setTransactions(transactions)
+
+    const users = await fetchUsers()
+    setUsers(users)
   }
 
   useEffect(() => {
     if (userData) {
       const { token } = JSON.parse(userData) as IUserLogin
 
-      const getUsers = async () => {
-        const users = await fetchUsers()
-        setUsers(users)
-      }
       const getDataUser = async () => {
         await getBalanceAndTransactions(token)
       }
 
-      getUsers()
       getDataUser()
     }
   }, [userData])
