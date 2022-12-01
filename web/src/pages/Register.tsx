@@ -26,7 +26,7 @@ export function Register() {
       setIsInvalidPassword(true)
     } else {
       axios
-        .post('http://localhost:3001/register', {
+        .post('https://banking-online-production.up.railway.app/register', {
           username,
           password,
         })

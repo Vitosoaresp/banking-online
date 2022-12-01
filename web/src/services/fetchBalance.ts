@@ -3,7 +3,7 @@ import { IBalance } from '../interfaces/IBalance'
 
 export default async function fetchBalance(token: string) {
   const { data } = await axios.get<unknown, AxiosResponse<IBalance>>(
-    'http://localhost:3001/balance',
+    'https://banking-online-production.up.railway.app/balance',
     {
       headers: {
         Authorization: token,

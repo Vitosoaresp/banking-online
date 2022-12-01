@@ -8,7 +8,7 @@ export async function fetchCreateTransfer({
   token,
 }: ICreateTransfer & { token: string }) {
   const { data } = await axios.post(
-    'http://localhost:3001/transfer',
+    'https://banking-online-production.up.railway.app/transfer',
     { accountIn, value },
     {
       headers: {
@@ -21,7 +21,7 @@ export async function fetchCreateTransfer({
 
 export async function fetchGetTransfers(token: string) {
   const { data } = await axios.get<unknown, AxiosResponse<ITransactions[]>>(
-    'http://localhost:3001/transfer',
+    'https://banking-online-production.up.railway.app/transfer',
     {
       headers: {
         Authorization: token,

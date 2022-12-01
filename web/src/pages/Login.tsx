@@ -28,10 +28,13 @@ export function Login() {
   async function handleSubmitForm(event: React.FormEvent) {
     event.preventDefault()
     axios
-      .post<unknown, AxiosResponse<IUserLogin>>('http://localhost:3001/login', {
-        username,
-        password,
-      })
+      .post<unknown, AxiosResponse<IUserLogin>>(
+        'https://banking-online-production.up.railway.app/login',
+        {
+          username,
+          password,
+        },
+      )
       .then((response) => {
         const { data } = response
         localStorage.setItem('user', JSON.stringify(data))
