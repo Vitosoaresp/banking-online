@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { Eye, EyeSlash, Lock, User } from 'phosphor-react'
+import { CircleNotch, Eye, EyeSlash, Lock, User } from 'phosphor-react'
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ export function Login() {
   const [password, setPassword] = useState('')
   const [isInvalidLogin, setIsInvalidLogin] = useState(false)
   const [visibledPassword, setVisibledPassword] = useState(false)
+  const [loadingLogin, setLoadingLogin] = useState(false)
 
   useEffect(() => {
     if (isInvalidLogin) {
@@ -27,6 +28,7 @@ export function Login() {
 
   async function handleSubmitForm(event: React.FormEvent) {
     event.preventDefault()
+    setLoadingLogin(true)
     axios
       .post<unknown, AxiosResponse<IUserLogin>>(
         'https://banking-online-production.up.railway.app/login',
@@ -41,6 +43,7 @@ export function Login() {
         history.push('/home')
       })
       .catch(() => {
+        setLoadingLogin(false)
         setIsInvalidLogin(true)
       })
   }
@@ -117,9 +120,13 @@ export function Login() {
           <button
             disabled={!username || !password}
             type="submit"
-            className="bg-zinc-200 hover:bg-zinc-300 transition-colors py-2 rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-zinc-200 hover:bg-zinc-300 transition-colors py-2 rounded-md font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
-            Entrar
+            {loadingLogin ? (
+              <CircleNotch className="animate-spin" size={20} />
+            ) : (
+              'Entrar'
+            )}
           </button>
 
           <p className="text-white">
